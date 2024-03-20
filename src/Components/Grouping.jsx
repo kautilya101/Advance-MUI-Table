@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Stack, Select, MenuItem,InputLabel, Button } from '@mui/material'
+import { Stack, Select, MenuItem,InputLabel, Button, FormControl } from '@mui/material'
 
 
 const Grouping = ({setGroupBy,handleToggle}) => {
@@ -15,7 +15,9 @@ const Grouping = ({setGroupBy,handleToggle}) => {
   }
 
   return (
-    <Stack>
+    <Stack gap='10px'>
+    <FormControl>
+      <InputLabel id="groupby-options-label">Select Column</InputLabel>
       <Select
         labelId='groupby-options-label'
         id="groupby-options"
@@ -32,6 +34,7 @@ const Grouping = ({setGroupBy,handleToggle}) => {
           </MenuItem>
         ))}
       </Select>
+    </FormControl>
       <Button onClick={handleOption}>
           Apply Grouping
       </Button>

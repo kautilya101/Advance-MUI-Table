@@ -1,21 +1,22 @@
 import React from 'react';
 import {
-  MRT_ShowHideColumnsMenuItems,
   MRT_TableHeadCellFilterContainer
 } from "material-react-table";
-import { Stack } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 
 const Filtering = ({table}) => {
   return (
     <Stack p="8px" gap="20px">
           {table.getLeafHeaders()
           .map((header) => (
-            <MRT_TableHeadCellFilterContainer
-              key={header.id}
-              header={header}
-              table={table}
-              in
-            />
+            <Box key={header.id} sx={{ fontSize: 'large', fontWeight: 'bold'}}>
+              {header.column.columnDef.header}
+              <MRT_TableHeadCellFilterContainer
+                header={header}
+                table={table}
+                in
+              />
+            </Box>
           ))}
     </Stack>
   );
