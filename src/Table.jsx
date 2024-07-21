@@ -7,16 +7,21 @@ import { data } from "./Data/data";
 import moment from "moment";
 import { Box, Button, IconButton } from "@mui/material";
 import { FilterListIcon, SortIcon,GroupIcon,VisibilityIcon, Filtering, Grouping, SidePanel, Sorting, Visibility } from "./Components";
-
+import './App.css';
 
 
 const Table = () => {
   const [toggleState, setToggleState] = useState(false);
-  const [activeSidePanelComponent,setActiveSidePanelComponent] = useState({})
+  const [selectedOption,setSelectedOption] = useState(null)
   const handleToggle = (toggle) => {
     if (event.type === "keydown" ) return;
     setToggleState(toggle);
   };
+
+  const handleToolButtonClick = (option) => {
+    setSelectedOption(option);
+    handleToggle(true)
+  }
 
   const columns = useMemo(
     () => [
@@ -97,7 +102,7 @@ const Table = () => {
     data,
     initialState:  {
       density: 'compact', 
-      showColumnFilters: false
+      showColumnFilters: false,
     },
     muiPaginationProps: {
       color: "primary",
@@ -113,29 +118,17 @@ const Table = () => {
     paginationDisplayMode: "pages",
     renderToolbarInternalActions: ({ table }) => (
       <Box>
-        <IconButton onClick={() => {
-          handleToggle(true)
-          setActiveSidePanelComponent(components.visible)
-          }}
+        <IconButton onClick={() => handleToolButtonClick('visible')}
         >
           <VisibilityIcon />
         </IconButton>
-        <IconButton onClick={() => {
-          handleToggle(true)
-          setActiveSidePanelComponent(components.sort)
-          }}>
+        <IconButton onClick={() => handleToolButtonClick('sort')}>
           <SortIcon />
         </IconButton>
-        <IconButton onClick={() => {
-          handleToggle(true)
-          setActiveSidePanelComponent(components.filter)
-          }}>
+        <IconButton onClick={() => handleToolButtonClick('filter')}>
           <FilterListIcon />
         </IconButton>
-        <IconButton onClick={() => {
-          handleToggle(true)
-          setActiveSidePanelComponent(components.groupBy)
-          }}>
+        <IconButton onClick={() => handleToolButtonClick('groupBy')}>
           <GroupIcon />
         </IconButton>
       </Box>  
@@ -143,12 +136,12 @@ const Table = () => {
   }); 
 
   
-  const handleGroupBy = (state) => {
-    table.setGrouping([state]);
-  }
-
   const handleSorting = (state) => {
     table.setSorting([state])
+  }
+
+  const handleGroupBy = (state) => {
+    table.setGrouping([state]);
   }
 
   const clearVisibility = () => {
@@ -159,22 +152,27 @@ const Table = () => {
     table.resetSorting();
   }
 
-  const components = useMemo(() => ({
-    visible: <Visibility table={table} clearVisibility={clearVisibility} toggle={setToggleState} />,
-    sort: <Sorting table={table} sortFn={handleSorting} clear={clearSort}/>,
-    groupBy: <Grouping setGroupBy={handleGroupBy} handleToggle={setToggleState}/>,
-    filter: <Filtering table={table}/>,
-  }),[table])
-  
+  // const components = useMemo(() => ({
+  //   visible: <Visibility table={table} clearVisibility={clearVisibility} toggle={setToggleState} />,
+  //   sort: <Sorting table={table} sortFn={handleSorting} clear={clearSort}/>,
+  //   groupBy: <Grouping setGroupBy={handleGroupBy} handleToggle={setToggleState}/>,
+  //   filter: <Filtering table={table}/>,
+  // }),[table])
+
+
   return (
     <>
       <MaterialReactTable table={table} />
       <SidePanel
-        component={activeSidePanelComponent}
-        heading={'Options'}
+        table={table}
+        option={selectedOption}
         toggleState={toggleState}
         setToggle={setToggleState}
         setToggleState={handleToggle}
+        handleGroupBy={handleGroupBy}
+        handleSorting={handleSorting}
+        clearSort={clearSort}
+        clearVisibility={clearVisibility}
       />
     </>
   );

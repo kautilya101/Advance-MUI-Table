@@ -1,4 +1,4 @@
-import { Box, Button,  Stack, } from '@mui/material';
+import { Box, Button,  Stack, Switch, } from '@mui/material';
 import { MRT_ShowHideColumnsMenuItems } from 'material-react-table';
 import React, { useEffect, useState } from 'react';
 
@@ -18,10 +18,13 @@ const Visibility = ({table,clearVisibility,toggle}) => {
             column={column}
             table={table}
           />
+          {/* <Switch  /> */}
         </Box>
       ))}
       <Button onClick={clear}>Clear</Button>
     </Stack>
+
+
   );
 }
 
