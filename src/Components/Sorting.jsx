@@ -4,14 +4,14 @@ import {
   MRT_TableHeadCellSortLabel,
 } from "material-react-table";
 
-const Sorting = ({table, sortFn, clear}) => {
+const Sorting = ({table, sortFn, clearSort}) => {
 
   const handleSortState = (header) => {
     sortFn({id: `${header.id}`, desc: false})
   }
 
   const handleClear = () => {
-    clear();
+    clearSort();
   }
   return (
     <Stack p="8px" gap="20px">
@@ -26,7 +26,7 @@ const Sorting = ({table, sortFn, clear}) => {
           />
         </Box>
       ))}
-      <Button onClick={handleClear}>Clear</Button>
+      <Button variant='outlined' sx={{ padding: 1 }} onClick={handleClear}>Clear Sort</Button>
     </Stack>
   );
 };

@@ -2,9 +2,9 @@ import React from 'react';
 import {
   MRT_TableHeadCellFilterContainer
 } from "material-react-table";
-import { Box, Stack } from '@mui/material';
+import { Box, Stack,Button } from '@mui/material';
 
-const Filtering = ({table}) => {
+const Filtering = ({table,clearFilters}) => {
   return (
     <Stack p="8px" gap="20px">
           {table.getLeafHeaders()
@@ -18,6 +18,7 @@ const Filtering = ({table}) => {
               />
             </Box>
           ))}
+          <Button variant='outlined' sx={{ padding: 1 }} onClick={clearFilters}>Clear Filters</Button>
     </Stack>
   );
 }

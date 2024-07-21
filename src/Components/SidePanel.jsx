@@ -13,6 +13,8 @@ const SidePanel = ({table,
   handleGroupBy,
   clearVisibility,
   clearSort,
+  clearFilters,
+  clearGroups
 }) => {
 
   let component;
@@ -20,13 +22,13 @@ const SidePanel = ({table,
 
 
   switch(option){ 
-    case 'sort': component = <Sorting table={table} sortFn={handleSorting} clear={clearSort}/> 
+    case 'sort': component = <Sorting table={table} sortFn={handleSorting} clearSort={clearSort}/> 
     break;
-    case 'filter': component = <Filtering table={table}/>
+    case 'filter': component = <Filtering table={table} clearFilters={clearFilters} />
       break;
-    case 'visible': component = <Visibility table={table} clearVisibility={clearVisibility} toggle={setToggleState} />
+    case 'visible': component = <Visibility table={table} clearVisibility={clearVisibility} />
       break;
-    case 'groupBy': component = <Grouping setGroupBy={handleGroupBy} handleToggle={setToggleState}/>
+    case 'groupBy': component = <Grouping setGroupBy={handleGroupBy} clearGroups={clearGroups} handleToggle={setToggleState}/>
       break;
     default: <Box>No Options</Box>
   }

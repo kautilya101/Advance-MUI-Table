@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Stack, Select, MenuItem,InputLabel, Button, FormControl } from '@mui/material'
 
 
-const Grouping = ({setGroupBy,handleToggle}) => {
+const Grouping = ({setGroupBy,clearGroups,handleToggle}) => {
   const [option, setOption] = useState('');
   const handleChange = (event) => {
     const value = event.target.value
@@ -35,7 +35,10 @@ const Grouping = ({setGroupBy,handleToggle}) => {
         ))}
       </Select>
     </FormControl>
-      <Button onClick={handleOption}>
+      <Button variant='outlined' sx={{ padding: 1 }} onClick={clearGroups}>
+          Clear Grouping
+      </Button>
+      <Button variant="contained" onClick={handleOption}>
           Apply Grouping
       </Button>
     </Stack>

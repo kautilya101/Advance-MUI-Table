@@ -8,6 +8,7 @@ import moment from "moment";
 import { Box, IconButton } from "@mui/material";
 import { FilterListIcon, SortIcon,GroupIcon,VisibilityIcon,SidePanel} from "./Components";
 import './App.css';
+import { Margin } from "@mui/icons-material";
 
 
 const Table = () => {
@@ -101,6 +102,10 @@ const Table = () => {
     columns,
     data,
     initialState:  {
+      sx:{
+        width: '80%',
+        margin: '0 auto'
+      },
       density: 'compact', 
       showColumnFilters: false,
     },
@@ -144,12 +149,21 @@ const Table = () => {
     table.setGrouping([state]);
   }
 
+
   const clearVisibility = () => {
     table.resetColumnVisibility();
   }
 
+  const clearFilters = () => {
+    table.resetColumnFilters();
+  }
+
   const clearSort = () => {
     table.resetSorting();
+  }
+
+  const clearGroups = () => {
+    table.resetGrouping();
   }
 
   return (
@@ -165,6 +179,8 @@ const Table = () => {
         handleSorting={handleSorting}
         clearSort={clearSort}
         clearVisibility={clearVisibility}
+        clearFilters={clearFilters}
+        clearGroups={clearGroups}
       />
     </>
   );
