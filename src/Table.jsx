@@ -152,14 +152,6 @@ const Table = () => {
     table.resetSorting();
   }
 
-  // const components = useMemo(() => ({
-  //   visible: <Visibility table={table} clearVisibility={clearVisibility} toggle={setToggleState} />,
-  //   sort: <Sorting table={table} sortFn={handleSorting} clear={clearSort}/>,
-  //   groupBy: <Grouping setGroupBy={handleGroupBy} handleToggle={setToggleState}/>,
-  //   filter: <Filtering table={table}/>,
-  // }),[table])
-
-
   return (
     <>
       <MaterialReactTable table={table} />
