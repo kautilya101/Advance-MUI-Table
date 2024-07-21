@@ -5,8 +5,8 @@ import {
 } from "material-react-table";
 import { data } from "./Data/data";
 import moment from "moment";
-import { Box, Button, IconButton } from "@mui/material";
-import { FilterListIcon, SortIcon,GroupIcon,VisibilityIcon, Filtering, Grouping, SidePanel, Sorting, Visibility } from "./Components";
+import { Box, IconButton } from "@mui/material";
+import { FilterListIcon, SortIcon,GroupIcon,VisibilityIcon,SidePanel} from "./Components";
 import './App.css';
 
 

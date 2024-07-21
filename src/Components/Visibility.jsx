@@ -18,7 +18,6 @@ const Visibility = ({table,clearVisibility,toggle}) => {
             column={column}
             table={table}
           />
-          {/* <Switch  /> */}
         </Box>
       ))}
       <Button onClick={clear}>Clear</Button>
